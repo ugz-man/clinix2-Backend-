@@ -9,6 +9,9 @@ const AppError = require("./utils/appError");
 const app = express();
 
 if (process.env.NODE_ENV === "development") {
+  console.log(process.env.NODE_ENV);
+  console.log(process.env);
+
   app.use(morgan("dev"));
 }
 
