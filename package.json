@@ -1,0 +1,21 @@
+{
+  "name": "clinix2",
+  "version": "1.0.0",
+  "description": "The backend for the clinix frontend project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ikedinma Ugochukwu",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "groq-sdk": "^0.19.0",
+    "mongoose": "^8.13.2"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0"
+  }
+}
