@@ -24,7 +24,15 @@ const messageSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
-  imageLink: String,
+  imageLink: {
+    type: String,
+    validate: {
+      validator: function () {
+        return this.messageType === 2;
+      },
+      message: "The message type must be 2 and the imageLink must be present.",
+    },
+  },
 });
 
 const Message = mongoose.model("Message", messageSchema);
