@@ -24,6 +24,7 @@ const messageSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
+  imageLink: String,
 });
 
 const Message = mongoose.model("Message", messageSchema);
