@@ -23,6 +23,12 @@ app.use(express.json());
 app.options("/{*splat}", corsConfiguration);
 app.use(corsConfiguration);
 
+// Render is behind a proxy so req.protocol sends http instead of https
+// this line enables this app to trust the proxy
+if (process.env.NODE_ENV === "production") {
+  app.set("trust proxy", true);
+}
+
 // Routes
 app.use("/api/v1/messages", messageRouter);
 
