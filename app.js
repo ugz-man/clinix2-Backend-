@@ -1,5 +1,5 @@
 const express = require("express");
-const cors = require("cors");
+const corsConfiguration = require("./cors/cors");
 const path = require("path");
 
 const messageRouter = require("./routes/messageRoutes");
@@ -20,8 +20,8 @@ if (process.env.NODE_ENV === "development") {
 // Handle json request in the body
 app.use(express.json());
 
-app.options("/{*splat}", cors());
-app.use(cors());
+app.options("/{*splat}", corsConfiguration);
+app.use(corsConfiguration);
 
 // Routes
 app.use("/api/v1/messages", messageRouter);

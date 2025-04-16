@@ -50,7 +50,7 @@ const sendMessage = catchAsyncError(async function (req, res, next) {
     text: response,
   });
   // send the result to the client
-  res.status(200).json({ status: "success", data: { data: savedResponse } });
+  res.status(201).json({ status: "success", data: { data: savedResponse } });
 });
 
 const uploadImageFile = upload.single("imageFile");
@@ -75,7 +75,7 @@ const resizeAndSendImageFile = catchAsyncError(async function (req, res, next) {
   const imageLink = `${req.protocol}://${req.get("host")}/images/messages/${
     req.file.filename
   }`;
-  res.status(200).json({
+  res.status(201).json({
     status: "success",
     data: { imageLink, fileName },
   });
