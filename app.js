@@ -20,8 +20,18 @@ if (process.env.NODE_ENV === "production") {
 // Set http security headers
 app.use(helmet());
 
+// Configure cors
+app.options("/{*splat}", corsConfiguration);
+app.use(corsConfiguration);
+
 // Serving static files
 app.use(express.static(path.join(__dirname, "public")));
+
+// Handle json request in the body
+app.use(express.json());
+
+// Sanitize againt cross-site scripting attacks (xss)
+app.use(xss());
 
 // Displaying development log while developing
 if (process.env.NODE_ENV === "development") {
@@ -29,17 +39,10 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
-// Handle json request in the body
-app.use(express.json());
-
-app.use(xss());
-
-app.options("/{*splat}", corsConfiguration);
-app.use(corsConfiguration);
-
 // Routes
 app.use("/api/v1", router);
 
+// Sanitize against harmful mongo query object
 expressMongoSanitize({ app, router });
 
 app.all("/{*splat}", (req, res, next) => {
