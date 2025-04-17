@@ -81,4 +81,15 @@ const resizeAndSendImageFile = catchAsyncError(async function (req, res, next) {
   });
 });
 
-module.exports = { sendMessage, uploadImageFile, resizeAndSendImageFile };
+const deleteUserMessages = catchAsyncError(async function (req, res, next) {
+  await Message.deleteMany({ userId: req.params.userId });
+
+  res.status(204).json({ status: "success" });
+});
+
+module.exports = {
+  sendMessage,
+  uploadImageFile,
+  resizeAndSendImageFile,
+  deleteUserMessages,
+};
