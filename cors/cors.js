@@ -4,7 +4,10 @@ if (process.env.NODE_ENV === "development") {
   module.exports = cors();
 } else if (process.env.NODE_ENV === "production") {
   module.exports = cors({
-    origin: "https://clinix2-frontend.vercel.app",
+    origin: [
+      "https://clinix2-frontend.vercel.app",
+      "https://clinix2-backend.onrender.com",
+    ],
     optionsSuccessStatus: 204,
   });
 }
