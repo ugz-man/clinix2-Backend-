@@ -25,18 +25,7 @@ app.options("/{*splat}", corsConfiguration);
 app.use(corsConfiguration);
 
 // Serving static files
-app.use(
-  express.static(path.join(__dirname, "public"), {
-    setHeaders: (res) => {
-      if (process.env.NODE_ENV === "production") {
-        res.set(
-          "Access-Control-Allow-Origin",
-          "https://clinix2-frontend.vercel.app"
-        );
-      }
-    },
-  })
-);
+app.use(express.static(path.join(__dirname, "public")));
 
 // Handle json request in the body
 app.use(express.json());

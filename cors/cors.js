@@ -6,5 +6,6 @@ if (process.env.NODE_ENV === "development") {
   module.exports = cors({
     origin: ["https://clinix2-frontend.vercel.app"],
     optionsSuccessStatus: 204,
+    credentials: true,
   });
 }
