@@ -7,7 +7,7 @@ const router = express.Router();
 // expressMongoSanitize({ router });
 
 router.route("/").post(messageController.sendMessage);
-router.route("/:userId").delete(messageController.deleteUserMessages);
+router.route("/:userId").post(messageController.deleteUserMessages);
 router
   .route("/image-file")
   .post(
