@@ -30,6 +30,9 @@ app.use(express.static(path.join(__dirname, "public")));
 // Handle json request in the body
 app.use(express.json());
 
+// Sanitize against harmful mongo query object
+expressMongoSanitize({ app, router });
+
 // Sanitize againt cross-site scripting attacks (xss)
 app.use(xss());
 
@@ -41,9 +44,6 @@ if (process.env.NODE_ENV === "development") {
 
 // Routes
 app.use("/api/v1", router);
-
-// Sanitize against harmful mongo query object
-expressMongoSanitize({ app, router });
 
 app.all("/{*splat}", (req, res, next) => {
   next(new AppError(404, `Can't find ${req.originalUrl} on this server`));
